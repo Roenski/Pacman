@@ -2,6 +2,7 @@
 #define WINDOW_HH
 
 #include "Map.hpp"
+#include <map>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -9,11 +10,16 @@ class Window : public Map {
 	
 public:
 	Window(std::string filename);
-	int calcScale(const int calc_height, const int calc_width);
+	bool checkEvent(sf::Event &event);
+	void close();
+	void clear(std::string color);
+	void display();
+	bool isOpened();
+	void startWindow(std::string name);
 	
 private:
-	int scale;
-	std::vector<sf::Color> colors; // list of colors that can be used
+	std::map<std::string, sf::Color> colors;
+	sf::RenderWindow window;
 };
 
 #endif
