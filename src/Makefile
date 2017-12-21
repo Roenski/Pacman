@@ -1,8 +1,8 @@
 CC=g++ -pthread
 CPPFLAGS=-c -g -std=c++14 -Wall -Wextra -pedantic
-SOURCES=main.cpp lodepng.cpp Map.cpp Window.cpp
-OBJECTS=main.o lodepng.o Map.o Window.o -lsfml-graphics -lsfml-window -lsfml-system
-OBJECTS_RM=main.o lodepng.o Map.o Window.o Window.hpp.gch Map.hpp.gch
+SOURCES=main.cpp lodepng.cpp Map.cpp Window.cpp drawing.cpp
+OBJECTS=main.o lodepng.o Map.o Window.o drawing.o -lsfml-graphics -lsfml-window -lsfml-system
+OBJECTS_RM=main.o lodepng.o Map.o Window.o Window.hpp.gch Map.hpp.gch drawing.o drawing.hpp.gch
 EXECUTABLE=Pacman
 
 all: $(SOURCES) $(EXECUTABLE)
