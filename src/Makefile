@@ -1,20 +1,29 @@
-CC=g++ -pthread
-CPPFLAGS=-c -g -std=c++14 -Wall -Wextra -pedantic
-SOURCES=main.cpp lodepng.cpp Map.cpp Window.cpp drawing.cpp
-OBJECTS=main.o lodepng.o Map.o Window.o drawing.o -lsfml-graphics -lsfml-window -lsfml-system
-OBJECTS_RM=main.o lodepng.o Map.o Window.o Window.hpp.gch Map.hpp.gch drawing.o drawing.hpp.gch
-EXECUTABLE=Pacman
-
-all: $(SOURCES) $(EXECUTABLE)
+CC = g++
+CPPFLAGS = -c -g -std=c++14 -Wall -Wextra -pedantic
+LDFLAGS = -Wall -g
+OBJECTS = main.o lodepng.o Map.o Window.o drawing.o -lsfml-graphics -lsfml-window -lsfml-system
+EXECUTABLE = Pacman
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 
-.cpp.o:
-	$(CC) $(CPPFLAGS) $< -o $@
+main.o : Map.hpp Window.hpp drawing.hpp lodepng.h
+	$(CC) $(CPPFLAGS) main.cpp
+
+drawing.o : drawing.hpp Window.hpp Map.hpp lodepng.h
+	$(CC) $(CPPFLAGS) drawing.cpp
+
+lodepng.o : lodepng.h
+	$(CC) $(CPPFLAGS) lodepng.cpp
+
+Map.o : Map.hpp lodepng.h
+	$(CC) $(CPPFLAGS) Map.cpp
+
+Window.o : Window.hpp Map.hpp lodepng.h
+	$(CC) $(CPPFLAGS) Window.cpp
 
 clean:
-	rm -f $(OBJECTS_RM) $(EXECUTABLE)
+	rm -f *.o *.hpp.gch *~ $(EXECUTABLE)
 
 run: Pacman
 	./Pacman
