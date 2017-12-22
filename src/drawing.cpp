@@ -4,7 +4,6 @@ void startGame(Window &window)
 {
 	sf::Event event;
 	window.startWindow("Pacman");
-	window.printValues();
 	while(window.isOpened()) {
 		window.clear("black");
 		while(window.checkEvent(event)) {
@@ -12,7 +11,7 @@ void startGame(Window &window)
 				window.close();
 			}
 		}
-		window.drawMap();
+		window.drawMap2();
 		window.display();
 	}
 }

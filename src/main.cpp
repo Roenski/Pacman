@@ -7,6 +7,5 @@
 int main()
 {
 	Window test("../images/Map.png");
-	std::cout << "check";
 	startGame(test);
 }

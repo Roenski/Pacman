@@ -15,6 +15,7 @@ public:
 	void clear(std::string color);
 	void display();
 	void drawMap();
+	void drawMap2();
 	bool isClosed(sf::Event &event);
 	bool isOpened();
 	void startWindow(std::string name);

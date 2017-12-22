@@ -28,6 +28,6 @@ clean:
 run: Pacman
 	./Pacman
  
-valgrind: learner
-	valgrind --leak-check=full --show-reachable=no ./learner
+valgrind: $(EXCECUTABLE)
+	valgrind --leak-check=full --show-reachable=no ./Pacman
 

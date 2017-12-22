@@ -39,6 +39,18 @@ void Window::drawMap()
 	}
 }
 
+void Window::drawMap2()
+{
+	sf::Texture texture;
+	if(!texture.loadFromFile(address)) {
+		//throw error
+		std::cout << "Error loading address\n";
+	}
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+	window.draw(sprite);
+}
+
 /*
  * Starts the window.
  * Name is the name of the window, displayed on top of the window
