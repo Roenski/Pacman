@@ -13,13 +13,30 @@ Window::Window(std::string filename) : Map(filename)
 	}
 }
 
-bool Window::checkEvent(sf::Event &event) {
+bool Window::checkEvent(sf::Event &event)
+{
 	if(window.pollEvent(event)) { // an SFML function. 
 																// Will be true, if there has been an event, e.g closing the window, mouse button pressed
 		return true;
 	}
 	else
 		return false;
+}
+
+void Window::drawMap()
+{
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			if (map[j][i] == -1) {
+				sf::RectangleShape rec; // initialize a rectangle
+				rec.setSize(sf::Vector2f(1,1)); // sets the size to one pixel
+				rec.setPosition(i,j); // sets the position on the window
+				rec.setFillColor(sf::Color::White); // set the color
+				window.draw(rec); // send the rectangle to the window for drawing
+													// it doesn't draw it yet: only when window.display() is called
+			}
+		}
+	}
 }
 
 /*
@@ -30,6 +47,11 @@ void Window::startWindow(std::string name)
 {
 	window.create(sf::VideoMode(800,800), name); // sf::Videomode is an SFML variable,
 																							 // takes the window width and height as a variable
+}
+
+bool Window::isClosed(sf::Event &event)
+{
+	return (event.type == sf::Event::Closed);
 }
 
 // returns true, if the window is open, false, if not
@@ -56,4 +78,7 @@ void Window::display()
 	window.display();
 }
 
-
+void Window::printValues()
+{
+	std::cout << height << " " << width << " " << map[0].size() << std::endl;
+}

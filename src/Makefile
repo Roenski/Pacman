@@ -7,19 +7,19 @@ EXECUTABLE = Pacman
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 
-main.o : Map.hpp Window.hpp drawing.hpp lodepng.h
+main.o : main.cpp Map.hpp Window.hpp drawing.hpp lodepng.h
 	$(CC) $(CPPFLAGS) main.cpp
 
-drawing.o : drawing.hpp Window.hpp Map.hpp lodepng.h
+drawing.o : drawing.cpp drawing.hpp Window.hpp Map.hpp lodepng.h
 	$(CC) $(CPPFLAGS) drawing.cpp
 
-lodepng.o : lodepng.h
+lodepng.o : lodepng.cpp lodepng.h
 	$(CC) $(CPPFLAGS) lodepng.cpp
 
-Map.o : Map.hpp lodepng.h
+Map.o : Map.cpp Map.hpp lodepng.h
 	$(CC) $(CPPFLAGS) Map.cpp
 
-Window.o : Window.hpp Map.hpp lodepng.h
+Window.o : Window.cpp Window.hpp Map.hpp lodepng.h
 	$(CC) $(CPPFLAGS) Window.cpp
 
 clean:

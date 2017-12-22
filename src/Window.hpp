@@ -14,8 +14,12 @@ public:
 	void close();
 	void clear(std::string color);
 	void display();
+	void drawMap();
+	bool isClosed(sf::Event &event);
 	bool isOpened();
 	void startWindow(std::string name);
+	
+	void printValues();
 	
 private:
 	std::map<std::string, sf::Color> colors;

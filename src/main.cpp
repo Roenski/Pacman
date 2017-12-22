@@ -6,6 +6,7 @@
 
 int main()
 {
-	Window test("../images/16x16.png");
+	Window test("../images/Map.png");
+	std::cout << "check";
 	startGame(test);
 }

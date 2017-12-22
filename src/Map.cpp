@@ -6,6 +6,7 @@ Map::Map(std::string filename)
 	map = std::get<0>(bunch);
 	height = std::get<1>(bunch);
 	width = std::get<2>(bunch);
+	std::cout << "check2";
 }
 
 // Returns a tuple with members: map, height, width
