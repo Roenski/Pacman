@@ -23,7 +23,7 @@ bool Window::checkEvent(sf::Event &event)
 		return false;
 }
 
-void Window::drawMap()
+void Window::drawPixels()
 {
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
@@ -39,7 +39,7 @@ void Window::drawMap()
 	}
 }
 
-void Window::drawMap2()
+void Window::drawMap()
 {
 	sf::Texture texture;
 	if(!texture.loadFromFile(address)) {
@@ -57,7 +57,13 @@ void Window::drawMap2()
 */
 void Window::startWindow(std::string name) 
 {
-	window.create(sf::VideoMode(800,800), name); // sf::Videomode is an SFML variable,
+	sf::Texture texture;
+	if(!texture.loadFromFile(address)) {
+		//throw error
+		std::cout << "Error loading address\n";
+	}
+	Vector2 dimensions = texture.getSize();
+	window.create(sf::VideoMode(dimensions.x, dimensions.y), name); // sf::Videomode is an SFML variable,
 																							 // takes the window width and height as a variable
 }
 

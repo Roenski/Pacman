@@ -11,7 +11,7 @@ void startGame(Window &window)
 				window.close();
 			}
 		}
-		window.drawMap2();
+		window.drawMap();
 		window.display();
 	}
 }
