@@ -15,9 +15,11 @@ public:
 	void clear(std::string color);
 	void display();
 	void drawMap();
+	void drawFrames();
 	void drawPixels();
 	bool isClosed(sf::Event &event);
 	bool isOpened();
+	void setFramerate(int fps);
 	void startWindow(std::string name);
 	
 	void printValues();
@@ -25,6 +27,7 @@ public:
 private:
 	std::map<std::string, sf::Color> colors;
 	sf::RenderWindow window;
+	sf::Texture texture;
 };
 
 #endif

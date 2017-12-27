@@ -5,13 +5,14 @@ void startGame(Window &window)
 	sf::Event event;
 	window.startWindow("Pacman");
 	while(window.isOpened()) {
-		window.clear("black");
+		window.clear("white");
 		while(window.checkEvent(event)) {
 			if(window.isClosed(event)) {
 				window.close();
 			}
 		}
-		window.drawMap();
+		window.drawPixels();
 		window.display();
+		window.setFramerate(60);
 	}
 }

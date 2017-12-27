@@ -45,5 +45,6 @@ std::tuple< std::vector<std::vector<int>>, int, int > Map::toMap(std::string fil
 		init_map.push_back(temp);
 	}
 	std::tuple< std::vector< std::vector<int> >, int, int > ret_tuple = std::make_tuple(init_map, init_height, init_width);
+	std::cout << init_height << " " << init_width;
 	return ret_tuple;
 }

@@ -11,6 +11,23 @@ Window::Window(std::string filename) : Map(filename)
 		keys_it++; 
 		color_it++;
 	}
+	
+	if(!texture.loadFromFile(address)) {
+		//throw error
+		std::cout << "Error loading address\n";
+	}
+}
+
+// flushes the window with the given color
+void Window::clear(std::string color)
+{
+	window.clear(colors[color]);
+}
+
+// closes the window
+void Window::close()
+{
+	window.close();
 }
 
 bool Window::checkEvent(sf::Event &event)
@@ -23,48 +40,34 @@ bool Window::checkEvent(sf::Event &event)
 		return false;
 }
 
+// displays everything that has been drawn on the screen
+void Window::display()
+{
+	window.display();
+}
+
+void Window::drawMap()
+{
+	sf::Sprite sprite;
+	sprite.setTexture(texture);
+	sprite.setPosition(sf::Vector2f(10,10));
+	window.draw(sprite);
+}
+
 void Window::drawPixels()
 {
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			if (map[j][i] == -1) {
+	for (auto i = map.begin(); i != map.end(); i++) {
+		for (auto j = (*i).begin(); j != (*i).end(); j++) {
+			if (*j == -1) {
 				sf::RectangleShape rec; // initialize a rectangle
 				rec.setSize(sf::Vector2f(1,1)); // sets the size to one pixel
-				rec.setPosition(i,j); // sets the position on the window
-				rec.setFillColor(sf::Color::White); // set the color
+				rec.setPosition(j-(*i).begin(),i-map.begin()); // sets the position on the window
+				rec.setFillColor(sf::Color::Black); // set the color
 				window.draw(rec); // send the rectangle to the window for drawing
 													// it doesn't draw it yet: only when window.display() is called
 			}
 		}
 	}
-}
-
-void Window::drawMap()
-{
-	sf::Texture texture;
-	if(!texture.loadFromFile(address)) {
-		//throw error
-		std::cout << "Error loading address\n";
-	}
-	sf::Sprite sprite;
-	sprite.setTexture(texture);
-	window.draw(sprite);
-}
-
-/*
- * Starts the window.
- * Name is the name of the window, displayed on top of the window
-*/
-void Window::startWindow(std::string name) 
-{
-	sf::Texture texture;
-	if(!texture.loadFromFile(address)) {
-		//throw error
-		std::cout << "Error loading address\n";
-	}
-	Vector2 dimensions = texture.getSize();
-	window.create(sf::VideoMode(dimensions.x, dimensions.y), name); // sf::Videomode is an SFML variable,
-																							 // takes the window width and height as a variable
 }
 
 bool Window::isClosed(sf::Event &event)
@@ -78,22 +81,25 @@ bool Window::isOpened()
 	return window.isOpen();
 }
 
-// closes the window
-void Window::close()
+void Window::setFramerate(int fps)
 {
-	window.close();
+	window.setFramerateLimit(fps);
 }
 
-// flushes the window with the given color
-void Window::clear(std::string color)
+/*
+ * Starts the window.
+ * Name is the name of the window, displayed on top of the window
+*/
+void Window::startWindow(std::string name) 
 {
-	window.clear(colors[color]);
-}
-
-// displays everything that has been drawn on the screen
-void Window::display()
-{
-	window.display();
+	sf::Texture texture;
+	if(!texture.loadFromFile(address)) {
+		//throw error
+		std::cout << "Error loading address\n";
+	}
+	sf::Vector2u dimensions = texture.getSize();
+	window.create(sf::VideoMode(dimensions.x, dimensions.y), name); // sf::Videomode is an SFML variable,
+																							 // takes the window width and height as a variable
 }
 
 void Window::printValues()
