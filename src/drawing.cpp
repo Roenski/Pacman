@@ -3,16 +3,31 @@
 void startGame(Window &window)
 {
 	sf::Event event;
+	enum Direction {
+		Up,
+		Down,
+		Left,
+		Right
+	};
+	
 	window.startWindow("Pacman");
+	int pacX = 20;
+	int pacY = 17;
 	while(window.isOpened()) {
 		window.clear("white");
 		while(window.checkEvent(event)) {
 			if(window.isClosed(event)) {
 				window.close();
 			}
+			else if(window.arrowKeyPressed(event)) {
+				std::cout << "Arrow key Pressed\n";
+				
+			}
 		}
-		window.drawPixels();
+		window.drawMap();
+		window.drawPacman(pacX,pacY);
 		window.display();
-		window.setFramerate(60);
+		pacX++;
+		window.setFramerate(10);
 	}
 }

@@ -1,8 +1,8 @@
 #include "Map.hpp"
 
-Map::Map(std::string filename)
+Map::Map(std::string filename, std::string filename_bw)
 {
-	std::tuple< std::vector<std::vector<int>>, int, int > bunch = toMap(filename);
+	std::tuple< std::vector<std::vector<int>>, int, int > bunch = toMap(filename_bw);
 	map = std::get<0>(bunch);
 	height = std::get<1>(bunch);
 	width = std::get<2>(bunch);
@@ -45,6 +45,5 @@ std::tuple< std::vector<std::vector<int>>, int, int > Map::toMap(std::string fil
 		init_map.push_back(temp);
 	}
 	std::tuple< std::vector< std::vector<int> >, int, int > ret_tuple = std::make_tuple(init_map, init_height, init_width);
-	std::cout << init_height << " " << init_width;
 	return ret_tuple;
 }

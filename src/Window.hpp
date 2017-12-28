@@ -9,13 +9,15 @@
 class Window : public Map {
 	
 public:
-	Window(std::string filename);
+	Window(std::string filename, std::string filename_bw, std::string filenamePacman);
+	bool arrowKeyPressed(sf::Event &event);
 	bool checkEvent(sf::Event &event);
 	void close();
 	void clear(std::string color);
 	void display();
 	void drawMap();
 	void drawFrames();
+	void drawPacman(int x, int y);
 	void drawPixels();
 	bool isClosed(sf::Event &event);
 	bool isOpened();
@@ -27,7 +29,9 @@ public:
 private:
 	std::map<std::string, sf::Color> colors;
 	sf::RenderWindow window;
-	sf::Texture texture;
+	std::string pacmanAddress;
+	sf::Texture mapTexture;
+	sf::Texture pacmanTexture;
 };
 
 #endif

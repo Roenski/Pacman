@@ -17,7 +17,7 @@ protected:
 	int width; // width of the map
 
 public:
-	Map(std::string filename);
+	Map(std::string filename, std::string filename_bw);
 	std::tuple< std::vector<std::vector<int>>, int, int > toMap(std::string filename);
 };
 

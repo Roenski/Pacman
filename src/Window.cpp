@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-Window::Window(std::string filename) : Map(filename) 
+Window::Window(std::string filename, std::string filename_bw, std::string filename_pacman) : Map(filename, filename_bw) 
 {
 	auto color_list = {sf::Color::Yellow, sf::Color::Blue, sf::Color::Green, sf::Color::Cyan, sf::Color::Magenta, sf::Color::Black, sf::Color::White};
 	auto keys = {"yellow", "blue", "green", "cyan", "magenta", "black", "white"};
@@ -12,10 +12,23 @@ Window::Window(std::string filename) : Map(filename)
 		color_it++;
 	}
 	
-	if(!texture.loadFromFile(address)) {
+	pacmanAddress = filename_pacman;
+	
+	if(!mapTexture.loadFromFile(address)) {
 		//throw error
-		std::cout << "Error loading address\n";
+		std::cout << "Error loading map texture\n";
 	}
+	
+	if(!pacmanTexture.loadFromFile(pacmanAddress)) {
+		//throw error
+		std::cout << "Error loading pacman texture\n";
+	}
+}
+
+bool Window::arrowKeyPressed(sf::Event &event)
+{
+	return (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
+					sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down));
 }
 
 // flushes the window with the given color
@@ -49,8 +62,16 @@ void Window::display()
 void Window::drawMap()
 {
 	sf::Sprite sprite;
-	sprite.setTexture(texture);
-	sprite.setPosition(sf::Vector2f(10,10));
+	sprite.setTexture(mapTexture);
+	sprite.setPosition(sf::Vector2f(0,0));
+	window.draw(sprite);
+}
+
+void Window::drawPacman(int x, int y)
+{
+	sf::Sprite sprite;
+	sprite.setTexture(pacmanTexture);
+	sprite.setPosition(sf::Vector2f(x,y));
 	window.draw(sprite);
 }
 
