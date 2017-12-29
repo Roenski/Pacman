@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-Window::Window(std::string filename, std::string filename_bw, std::string filename_pacman) : Map(filename, filename_bw) 
+Window::Window(std::string filename, std::string filename_bw) : Map(filename, filename_bw) 
 {
 	auto color_list = {sf::Color::Yellow, sf::Color::Blue, sf::Color::Green, sf::Color::Cyan, sf::Color::Magenta, sf::Color::Black, sf::Color::White};
 	auto keys = {"yellow", "blue", "green", "cyan", "magenta", "black", "white"};
@@ -12,16 +12,9 @@ Window::Window(std::string filename, std::string filename_bw, std::string filena
 		color_it++;
 	}
 	
-	pacmanAddress = filename_pacman;
-	
 	if(!mapTexture.loadFromFile(address)) {
 		//throw error
 		std::cout << "Error loading map texture\n";
-	}
-	
-	if(!pacmanTexture.loadFromFile(pacmanAddress)) {
-		//throw error
-		std::cout << "Error loading pacman texture\n";
 	}
 }
 
@@ -67,7 +60,7 @@ void Window::drawMap()
 	window.draw(sprite);
 }
 
-void Window::drawPacman(int x, int y)
+void Window::drawPacman(int x, int y, Pacman pacman)
 {
 	sf::Sprite sprite;
 	sprite.setTexture(pacmanTexture);

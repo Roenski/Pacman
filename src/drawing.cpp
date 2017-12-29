@@ -3,12 +3,7 @@
 void startGame(Window &window)
 {
 	sf::Event event;
-	enum Direction {
-		Up,
-		Down,
-		Left,
-		Right
-	};
+	Pacman pacman("../images/pacman.png");
 	
 	window.startWindow("Pacman");
 	int pacX = 20;

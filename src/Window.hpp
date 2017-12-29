@@ -9,7 +9,7 @@
 class Window : public Map {
 	
 public:
-	Window(std::string filename, std::string filename_bw, std::string filenamePacman);
+	Window(std::string filename, std::string filename_bw);
 	bool arrowKeyPressed(sf::Event &event);
 	bool checkEvent(sf::Event &event);
 	void close();
@@ -29,9 +29,7 @@ public:
 private:
 	std::map<std::string, sf::Color> colors;
 	sf::RenderWindow window;
-	std::string pacmanAddress;
 	sf::Texture mapTexture;
-	sf::Texture pacmanTexture;
 };
 
 #endif
