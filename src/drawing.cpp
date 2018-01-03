@@ -14,15 +14,23 @@ void startGame(Window &window)
 			if(window.isClosed(event)) {
 				window.close();
 			}
-			else if(window.arrowKeyPressed(event)) {
-				std::cout << "Arrow key Pressed\n";
+			else if(window.arrowKeyPressed(pacman)) {
 				
 			}
 		}
+		
+		if(pacman.getDirection() == LEFT)
+			pacX--;
+		else if(pacman.getDirection() == RIGHT)
+			pacX++;
+		else if(pacman.getDirection() == UP)
+			pacY--;
+		else if(pacman.getDirection() == DOWN)
+			pacY++;
+			
 		window.drawMap();
-		window.drawPacman(pacX,pacY);
+		window.drawPacman(pacX, pacY, pacman);
 		window.display();
-		pacX++;
-		window.setFramerate(10);
+		window.setFramerate(30);
 	}
 }

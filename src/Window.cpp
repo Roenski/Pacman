@@ -18,10 +18,30 @@ Window::Window(std::string filename, std::string filename_bw) : Map(filename, fi
 	}
 }
 
-bool Window::arrowKeyPressed(sf::Event &event)
+bool Window::arrowKeyPressed(Pacman &pacman)
 {
-	return (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) ||
-					sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down));
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		pacman.setDirection(LEFT);
+		return true;
+	}
+	
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		pacman.setDirection(RIGHT);
+		return true;
+	}
+	
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		pacman.setDirection(UP);
+		return true;
+	}
+	
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		pacman.setDirection(DOWN);
+		return true;
+	}
+	
+	return false;
+
 }
 
 // flushes the window with the given color
@@ -63,8 +83,17 @@ void Window::drawMap()
 void Window::drawPacman(int x, int y, Pacman pacman)
 {
 	sf::Sprite sprite;
-	sprite.setTexture(pacmanTexture);
+	sprite.setTexture(pacman.getTexture());
 	sprite.setPosition(sf::Vector2f(x,y));
+	sprite.setOrigin(12,13);
+	
+	if(pacman.getDirection() == LEFT)
+		sprite.rotate(180);
+	else if(pacman.getDirection() == UP)
+		sprite.rotate(270);
+	else if(pacman.getDirection() == DOWN)
+		sprite.rotate(90);
+
 	window.draw(sprite);
 }
 

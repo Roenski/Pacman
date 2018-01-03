@@ -2,7 +2,7 @@
 #define DRAWING_HH
 
 #include "Window.hpp"
-#include "Character.hpp"
+#include "Pacman.hpp"
 
 void startGame(Window& window);
 

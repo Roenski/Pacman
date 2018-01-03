@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <iostream>
 
 enum Direction {
 	UP,
@@ -15,7 +16,7 @@ enum Direction {
 class Character {
 	
 public:
-	Character(sf::Texture &initTexture, std::string initAddress);
+	Character(std::string initAddress);
 	Direction getDirection();
 	sf::Texture& getTexture();
 	void setDirection(Direction dir);

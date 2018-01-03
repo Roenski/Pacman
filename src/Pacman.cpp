@@ -1,3 +1,3 @@
 #include "Pacman.hpp"
 
-Pacman::Pacman(sf::Texture &initTexture, std::string initAddress) : Character(initTexture, initAddress) {}
+Pacman::Pacman(std::string initAddress) : Character(initAddress) {}
