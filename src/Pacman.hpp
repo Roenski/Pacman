@@ -6,7 +6,7 @@
 class Pacman : public Character {
 	
 public:
-	Pacman(std::string initAddress);
+	Pacman(std::string initAddress, std::pair<int, int> initCoordinates);
 	
 private:
 	

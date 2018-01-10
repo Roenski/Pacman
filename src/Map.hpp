@@ -6,6 +6,7 @@
 #include <iostream>
 #include <tuple>
 #include "lodepng.h"
+#include "Character.hpp"
 
 
 class Map {
@@ -19,6 +20,7 @@ protected:
 public:
 	Map(std::string filename, std::string filename_bw);
 	std::tuple< std::vector<std::vector<int>>, int, int > toMap(std::string filename);
+	bool availableDirection(Direction dir, int x, int y);
 };
 
 #endif

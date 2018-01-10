@@ -11,7 +11,7 @@ class Window : public Map {
 	
 public:
 	Window(std::string filename, std::string filename_bw);
-	bool arrowKeyPressed(Pacman &pacman);
+	bool arrowKeyPressed();
 	bool checkEvent(sf::Event &event);
 	void close();
 	void clear(std::string color);
@@ -20,11 +20,11 @@ public:
 	void drawFrames();
 	void drawPacman(int x, int y, Pacman pacman);
 	void drawPixels();
+	Direction getKeyPress();
 	bool isClosed(sf::Event &event);
 	bool isOpened();
 	void setFramerate(int fps);
 	void startWindow(std::string name);
-	
 	void printValues();
 	
 private:

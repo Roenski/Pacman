@@ -9,6 +9,36 @@ Map::Map(std::string filename, std::string filename_bw)
 	address = filename;
 }
 
+
+bool Map::availableDirection(Direction dir, int x, int y)
+{
+	switch(dir) {
+		case UP:
+			if(map[y-1][x] != 1)
+				return false;
+			break;
+			
+		case DOWN:
+			if(map[y+1][x] != 1)
+				return false;
+			break;
+		
+		case LEFT:
+			if(map[y][x-1] != 1)
+				return false;
+			break;
+			
+		case RIGHT:
+			if(map[y][x+1] != 1)
+				return false;
+			break;
+			
+		case STILL:
+			return false;
+	}
+	return true;
+}
+
 // Returns a tuple with members: map, height, width
 std::tuple< std::vector<std::vector<int>>, int, int > Map::toMap(std::string filename)
 {
@@ -37,6 +67,12 @@ std::tuple< std::vector<std::vector<int>>, int, int > Map::toMap(std::string fil
 				(int)image[4*init_width*y + 4*x + 2] == 255 &&
 				(int)image[4*init_width*y + 4*x + 3] == 255 ) {
 					temp.push_back(0);
+				}
+			else if( (int)image[4*init_width*y + 4*x + 0] == 255 &&
+				(int)image[4*init_width*y + 4*x + 1] == 0 &&
+				(int)image[4*init_width*y + 4*x + 2] == 0 &&
+				(int)image[4*init_width*y + 4*x + 3] == 255 ) {
+					temp.push_back(1);
 				}
 			else {
 				temp.push_back(-1);

@@ -10,21 +10,26 @@ enum Direction {
 	UP,
 	DOWN,
 	LEFT,
-	RIGHT
+	RIGHT,
+	STILL
 };
 
 class Character {
 	
 public:
-	Character(std::string initAddress);
+	Character(std::string initAddress, std::pair<int, int> initCoordinates);
 	Direction getDirection();
 	sf::Texture& getTexture();
 	void setDirection(Direction dir);
+	int getX();
+	int getY();
+	void move();
 	
 protected:
 	sf::Texture texture;
 	std::string address;
 	Direction direction;
+	std::pair<int, int> coordinates; // coordinates in x,y
 };
 
 #endif

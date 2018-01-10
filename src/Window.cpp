@@ -18,25 +18,21 @@ Window::Window(std::string filename, std::string filename_bw) : Map(filename, fi
 	}
 }
 
-bool Window::arrowKeyPressed(Pacman &pacman)
+bool Window::arrowKeyPressed()
 {
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		pacman.setDirection(LEFT);
 		return true;
 	}
 	
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		pacman.setDirection(RIGHT);
 		return true;
 	}
 	
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		pacman.setDirection(UP);
 		return true;
 	}
 	
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		pacman.setDirection(DOWN);
 		return true;
 	}
 	
@@ -111,6 +107,28 @@ void Window::drawPixels()
 			}
 		}
 	}
+}
+
+Direction Window::getKeyPress()
+{
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		return LEFT;
+	}
+	
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		return RIGHT;
+	}
+	
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		return UP;
+	}
+	
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		return DOWN;
+	}
+	
+	return STILL;
+
 }
 
 bool Window::isClosed(sf::Event &event)
