@@ -16,6 +16,7 @@ public:
 	void close();
 	void clear(std::string color);
 	void display();
+	void drawCoins();
 	void drawMap();
 	void drawFrames();
 	void drawPacman(int x, int y, Pacman pacman);

@@ -9,27 +9,33 @@ Map::Map(std::string filename, std::string filename_bw)
 	address = filename;
 }
 
+void Map::addCoin(std::pair<int, int> coordinates, int value) 
+{
+	Coin toAdd = Coin(coordinates, value);
+	coins.push_back(toAdd);
+	//std::cout << "Added coin coordinates: " << coordinates.first << " " << coordinates.second << std::endl;
+}
 
 bool Map::availableDirection(Direction dir, int x, int y)
 {
 	switch(dir) {
 		case UP:
-			if(map[y-1][x] != 1)
+			if(map[y-1][x] != 1 && map[y-1][x] != 100)
 				return false;
 			break;
 			
 		case DOWN:
-			if(map[y+1][x] != 1)
+			if(map[y+1][x] != 1 && map[y+1][x] != 100)
 				return false;
 			break;
 		
 		case LEFT:
-			if(map[y][x-1] != 1)
+			if(map[y][x-1] != 1 && map[y][x-1] != 100)
 				return false;
 			break;
 			
 		case RIGHT:
-			if(map[y][x+1] != 1)
+			if(map[y][x+1] != 1 && map[y][x+1] != 100)
 				return false;
 			break;
 			
@@ -73,6 +79,13 @@ std::tuple< std::vector<std::vector<int>>, int, int > Map::toMap(std::string fil
 				(int)image[4*init_width*y + 4*x + 2] == 0 &&
 				(int)image[4*init_width*y + 4*x + 3] == 255 ) {
 					temp.push_back(1);
+				}
+			else if( (int)image[4*init_width*y + 4*x + 0] == 0 &&
+				(int)image[4*init_width*y + 4*x + 1] == 255 &&
+				(int)image[4*init_width*y + 4*x + 2] == 0 &&
+				(int)image[4*init_width*y + 4*x + 3] == 255 ) {
+					temp.push_back(1);
+					addCoin(std::make_pair(x,y), 10);
 				}
 			else {
 				temp.push_back(-1);

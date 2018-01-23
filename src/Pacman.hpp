@@ -9,6 +9,8 @@ public:
 	Pacman(std::string initAddress, std::pair<int, int> initCoordinates);
 	
 private:
+	int points;
+	int lives;
 	
 	
 };

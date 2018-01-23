@@ -1,7 +1,7 @@
 CC = g++
 CPPFLAGS = -c -g -std=c++14 -Wall -Wextra -pedantic
 LDFLAGS = -Wall -g
-OBJECTS = main.o lodepng.o Map.o Window.o Character.o Pacman.o drawing.o -lsfml-graphics -lsfml-window -lsfml-system
+OBJECTS = main.o lodepng.o Map.o Window.o Character.o Pacman.o Coin.o drawing.o -lsfml-graphics -lsfml-window -lsfml-system
 EXECUTABLE = Pacman
 
 $(EXECUTABLE): $(OBJECTS)
@@ -16,7 +16,7 @@ drawing.o : drawing.cpp drawing.hpp Window.hpp Map.hpp Pacman.hpp Character.hpp 
 lodepng.o : lodepng.cpp lodepng.h
 	$(CC) $(CPPFLAGS) lodepng.cpp
 
-Map.o : Map.cpp Map.hpp lodepng.h
+Map.o : Map.cpp Map.hpp Coin.hpp Character.hpp lodepng.h
 	$(CC) $(CPPFLAGS) Map.cpp
 
 Window.o : Window.cpp Window.hpp Map.hpp Pacman.hpp Character.hpp lodepng.h
@@ -27,6 +27,9 @@ Character.o : Character.cpp Character.hpp
 
 Pacman.o : Pacman.cpp Pacman.hpp Character.hpp
 	$(CC) $(CPPFLAGS) Pacman.cpp
+
+Coin.o : Coin.cpp Coin.hpp Character.hpp
+	$(CC) $(CPPFLAGS) Coin.cpp
 
 clean:
 	rm -f *.o *.hpp.gch *~ $(EXECUTABLE)

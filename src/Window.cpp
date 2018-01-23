@@ -68,6 +68,17 @@ void Window::display()
 	window.display();
 }
 
+void Window::drawCoins()
+{
+	for(auto i = coins.begin(); i != coins.end(); i++) {
+		sf::Sprite sprite;
+		sprite.setTexture(i->getTexture());
+		sprite.setPosition(sf::Vector2f(i->getX(),i->getY()));
+		sprite.setOrigin(7,7);
+		window.draw(sprite);
+	}
+}
+
 void Window::drawMap()
 {
 	sf::Sprite sprite;

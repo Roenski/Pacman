@@ -6,6 +6,6 @@
 
 int main()
 {
-	Window test("../images/Map2.png", "../images/Map2_bw.png");
+	Window test("../images/Map2.png", "../images/Map2_tech.png");
 	startGame(test);
 }
