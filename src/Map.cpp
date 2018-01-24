@@ -2,6 +2,7 @@
 
 Map::Map(std::string filename, std::string filename_bw)
 {
+	skipCoins = {std::make_pair(30,30), std::make_pair(50,30), std::make_pair(30,50)};
 	std::tuple< std::vector<std::vector<int>>, int, int > bunch = toMap(filename_bw);
 	map = std::get<0>(bunch);
 	height = std::get<1>(bunch);
@@ -9,9 +10,9 @@ Map::Map(std::string filename, std::string filename_bw)
 	address = filename;
 }
 
-void Map::addCoin(std::pair<int, int> coordinates, int value) 
+void Map::addCoin(std::pair<int, int> coordinates, int value, State state) 
 {
-	Coin toAdd = Coin(coordinates, value);
+	Coin toAdd = Coin(coordinates, value, state);
 	coins.push_back(toAdd);
 	//std::cout << "Added coin coordinates: " << coordinates.first << " " << coordinates.second << std::endl;
 }
@@ -43,6 +44,15 @@ bool Map::availableDirection(Direction dir, int x, int y)
 			return false;
 	}
 	return true;
+}
+
+bool Map::inSkipCoinsList(int x, int y)
+{
+	for(auto i = skipCoins.begin(); i != skipCoins.end(); i++) {
+		if(i->first == x && i->second == y)
+			return true;
+	}
+	return false;
 }
 
 // Returns a tuple with members: map, height, width
@@ -85,7 +95,10 @@ std::tuple< std::vector<std::vector<int>>, int, int > Map::toMap(std::string fil
 				(int)image[4*init_width*y + 4*x + 2] == 0 &&
 				(int)image[4*init_width*y + 4*x + 3] == 255 ) {
 					temp.push_back(1);
-					addCoin(std::make_pair(x,y), 10);
+					if(inSkipCoinsList(x,y))
+						addCoin(std::make_pair(x,y), 10, DEAD);
+					else
+						addCoin(std::make_pair(x,y), 10, ALIVE);
 				}
 			else {
 				temp.push_back(-1);

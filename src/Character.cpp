@@ -9,12 +9,16 @@ Character::Character(std::string initAddress, std::pair<int, int> initCoordinate
 	
 	coordinates = initCoordinates;
 	address = initAddress;
-	direction = RIGHT;
 }
 
 Direction Character::getDirection()
 {
 	return direction;
+}
+
+State Character::getState()
+{
+	return state;
 }
 
 sf::Texture& Character::getTexture()
@@ -55,6 +59,16 @@ void Character::move()
 		case STILL:
 			break;
 	}
+}
+
+void Character::setAlive()
+{
+	state = ALIVE;
+}
+
+void Character::setDead()
+{
+	state = DEAD;
 }
 
 void Character::setDirection(Direction dir)

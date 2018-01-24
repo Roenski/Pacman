@@ -3,7 +3,7 @@
 void startGame(Window &window)
 {
 	sf::Event event;
-	Pacman pacman("../images/pacman.png", std::make_pair(29,29));
+	Pacman pacman("../images/pacman.png", std::make_pair(30,30));
 	window.startWindow("Pacman");
 	Direction wantedDirection = STILL;
 	while(window.isOpened()) {
@@ -24,6 +24,7 @@ void startGame(Window &window)
 		}
 		if(window.availableDirection(pacman.getDirection(), pacman.getX(), pacman.getY())) {
 			pacman.move();
+			window.checkEatenCoins(pacman);
 		}
 			
 		window.drawMap();

@@ -7,6 +7,8 @@ class Pacman : public Character {
 	
 public:
 	Pacman(std::string initAddress, std::pair<int, int> initCoordinates);
+	void addPoints(int morePoints);
+	int getPoints();
 	
 private:
 	int points;

@@ -14,22 +14,31 @@ enum Direction {
 	STILL
 };
 
+enum State {
+	ALIVE,
+	DEAD
+};
+
 class Character {
 	
 public:
 	Character(std::string initAddress, std::pair<int, int> initCoordinates);
 	Direction getDirection();
+	State getState();
 	sf::Texture& getTexture();
 	void setDirection(Direction dir);
 	int getX();
 	int getY();
 	void move();
+	void setDead();
+	void setAlive();
 	
 protected:
 	sf::Texture texture;
 	std::string address;
 	Direction direction;
 	std::pair<int, int> coordinates; // coordinates in x,y
+	State state;
 };
 
 #endif

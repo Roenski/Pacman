@@ -18,12 +18,14 @@ protected:
 	int height; // height of the map
 	int width; // width of the map
 	std::vector<Coin> coins;
+	std::vector<std::pair<int, int>> skipCoins;
 
 public:
 	Map(std::string filename, std::string filename_bw);
 	std::tuple< std::vector<std::vector<int>>, int, int > toMap(std::string filename);
 	bool availableDirection(Direction dir, int x, int y);
-	void addCoin(std::pair<int, int> coordinates, int value);
+	void addCoin(std::pair<int, int> coordinates, int value, State state);
+	bool inSkipCoinsList(int x, int y);
 };
 
 #endif

@@ -40,6 +40,17 @@ bool Window::arrowKeyPressed()
 
 }
 
+void Window::checkEatenCoins(Pacman &pacman)
+{
+	for(auto i = coins.begin(); i != coins.end(); i++) {
+		if(pacman.getX() == i->getX() && pacman.getY() == i->getY() && i->getState() == ALIVE) {
+			pacman.addPoints(i->getValue());
+			i->setDead();
+			std::cout << "More points! Points now: " << pacman.getPoints() << std::endl;
+		} 
+	}
+}
+
 // flushes the window with the given color
 void Window::clear(std::string color)
 {
@@ -71,11 +82,13 @@ void Window::display()
 void Window::drawCoins()
 {
 	for(auto i = coins.begin(); i != coins.end(); i++) {
-		sf::Sprite sprite;
-		sprite.setTexture(i->getTexture());
-		sprite.setPosition(sf::Vector2f(i->getX(),i->getY()));
-		sprite.setOrigin(7,7);
-		window.draw(sprite);
+		if(i->getState() == ALIVE) {
+			sf::Sprite sprite;
+			sprite.setTexture(i->getTexture());
+			sprite.setPosition(sf::Vector2f(i->getX(),i->getY()));
+			sprite.setOrigin(7,7);
+			window.draw(sprite);
+		}
 	}
 }
 

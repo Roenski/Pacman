@@ -3,14 +3,17 @@
 
 #include "Character.hpp"
 
+
+
 class Coin : public Character {
 	
 public:
-	Coin(std::pair<int, int> coordinates, int initValue);
+	Coin(std::pair<int, int> coordinates, int initValue, State state);
 	int getValue();
 	
 private:
 	int value;
+	
 };
 
 

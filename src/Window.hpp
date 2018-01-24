@@ -12,6 +12,7 @@ class Window : public Map {
 public:
 	Window(std::string filename, std::string filename_bw);
 	bool arrowKeyPressed();
+	void checkEatenCoins(Pacman &pacman);
 	bool checkEvent(sf::Event &event);
 	void close();
 	void clear(std::string color);
