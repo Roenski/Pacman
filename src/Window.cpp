@@ -2,6 +2,7 @@
 
 Window::Window(std::string filename, std::string filename_bw) : Map(filename, filename_bw) 
 {
+	// Add colors to the window
 	auto color_list = {sf::Color::Yellow, sf::Color::Blue, sf::Color::Green, sf::Color::Cyan, sf::Color::Magenta, sf::Color::Black, sf::Color::White};
 	auto keys = {"yellow", "blue", "green", "cyan", "magenta", "black", "white"};
 	auto keys_it = keys.begin();
@@ -66,7 +67,7 @@ void Window::close()
 bool Window::checkEvent(sf::Event &event)
 {
 	if(window.pollEvent(event)) { // an SFML function. 
-																// Will be true, if there has been an event, e.g closing the window, mouse button pressed
+		// Will be true, if there has been an event, e.g closing the window, mouse button pressed
 		return true;
 	}
 	else
