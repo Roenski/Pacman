@@ -29,6 +29,7 @@ public:
 	void setDirection(Direction dir);
 	int getX();
 	int getY();
+	std::pair<int, int> getTile();
 	void move();
 	void setDead();
 	void setAlive();

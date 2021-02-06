@@ -26,6 +26,15 @@ sf::Texture& Character::getTexture()
 	return texture;
 }
 
+// The map is divided into 20px sized tiles
+// This method calculates the tile the character currently is in
+std::pair<int, int> Character::getTile()
+{
+	int xTile = coordinates.first/20;
+	int yTile = coordinates.second/20;
+	return std::make_pair(xTile, yTile);
+}
+
 int Character::getX()
 {
 	return coordinates.first;
